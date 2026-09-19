@@ -12,9 +12,9 @@ public class Main {
             String id = read.next();
             int pages = read.nextInt();
 
-            if (type.equals("Colour")) {
+            if (type.equals("COLOUR")) {
                 jobs.add(new ColourPrint(id, pages));
-            } else if (type.equals("Mono")) {
+            } else if (type.equals("MONO")) {
                 jobs.add(new MonoPrint(id, pages));
             }
         }
