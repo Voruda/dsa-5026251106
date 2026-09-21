@@ -5,7 +5,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         Scanner read = new Scanner(Main.class.getResourceAsStream("jobs.txt"));
-        ArrayList<PrintJob> jobs = new ArrayList<>();
+        ArrayList<PrintJob> jobs = new ArrayList<>();   
 
         while (read.hasNext()) {
             String type = read.next();
