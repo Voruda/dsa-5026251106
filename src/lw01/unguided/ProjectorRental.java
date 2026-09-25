@@ -12,7 +12,7 @@ public class ProjectorRental extends Rental {
             charge += getDays() * 60000;
         }
         else {
-            charge += (3 * 60000) + ((getDays() - 3) * 40000);
+            charge += (3 * 60000) + ((getDays() - 3) * 45000);
         }
         return charge;
     }
