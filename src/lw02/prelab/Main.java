@@ -17,17 +17,6 @@ public class Main {
             String amount = read.next();
 
             transactions.add(new String[]{name, type, amount});
-
-            boolean customerExists = false;
-            for (int i = 0; i < customers.size(); i++) {
-                if (customers.get(i)[0].equals(name)) {
-                    customerExists = true;
-                    break;
-                }
-            }
-            if (!customerExists) {
-                customers.add(new String[]{name, "0"});
-            }
         }
         read.close();
 
