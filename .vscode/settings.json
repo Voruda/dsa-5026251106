@@ -3,7 +3,8 @@
         "src/lw01/prelab",
         "src/lw01/unguided",
         "src/lw02/prelab",
-        "src/lw02/unguided"
+        "src/lw02/unguided",
+        "src/lw03/prelab"
     ],
     "java.project.outputPath": "bin",
     "java.project.referencedLibraries": [
