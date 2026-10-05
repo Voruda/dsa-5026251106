@@ -13,7 +13,7 @@ public class Main {
         
         Scanner read = new Scanner(Main.class.getResourceAsStream("playlist.txt"));
         while (read.hasNextLine()) {
-            String line = read.nextLine().trim();
+            String line = read.nextLine();
             if (line.isEmpty()) continue;
             
             String[] parts = line.split(" ", 2);
@@ -44,10 +44,10 @@ public class Main {
         
         Scanner read = new Scanner(Main.class.getResourceAsStream("participants.txt"));
         while (read.hasNextLine()) {
-            String name = read.nextLine().trim();
-            if (name.isEmpty()) continue;
-            
-            if (!participants.add(name)) {
+            String name = read.nextLine();
+            if (!participants.contains(name)) {
+                participants.add(name);
+            } else {
                 duplicates++;
             }
         }
@@ -69,7 +69,7 @@ public class Main {
         
         Scanner read = new Scanner(Main.class.getResourceAsStream("inventory.txt"));
         while (read.hasNextLine()) {
-            String line = read.nextLine().trim();
+            String line = read.nextLine();
             if (line.isEmpty()) continue;
             
             String[] parts = line.split(" ");
@@ -78,10 +78,15 @@ public class Main {
             int quantity = Integer.parseInt(parts[2]);
 
             if (cmd.equals("ADD")) {
-                inventory.put(product, inventory.getOrDefault(product, 0) + quantity);
+                if (inventory.containsKey(product)) {
+                    int currentStock = inventory.get(product);
+                    inventory.put(product, currentStock + quantity);
+                } else {
+                    inventory.put(product, quantity);
+                }
             } else if (cmd.equals("SELL")) {
-                int currentStock = inventory.getOrDefault(product, 0);
-                if (currentStock >= quantity) {
+                if (inventory.containsKey(product) && inventory.get(product) >= quantity) {
+                    int currentStock = inventory.get(product);
                     inventory.put(product, currentStock - quantity);
                 } else {
                     failedSales++;
@@ -90,8 +95,8 @@ public class Main {
         }
         read.close();
 
-        for (Map.Entry<String, Integer> entry : inventory.entrySet()) {
-            System.out.println(entry.getKey() + ": " + entry.getValue());
+        for (String product : inventory.keySet()) {
+            System.out.println(product + ": " + inventory.get(product));
         }
         System.out.println("Failed sales: " + failedSales);
     }
