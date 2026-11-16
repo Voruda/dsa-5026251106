@@ -111,17 +111,25 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        size = 5;
+        Scanner sc = new Scanner(Main.class.getResourceAsStream("campus.txt"));
+        size = sc.nextInt();
         graph = new int[size][size];
-        names = new String[] {"A", "B", "C", "D", "E"};
+        names = new String[size];
 
-        addEdge(0, 1, 10);
-        addEdge(0, 2, 5);
-        addEdge(1, 2, 4);
-        addEdge(1, 3, 8);
-        addEdge(2, 3, 6);
-        addEdge(2, 4, 7);
-        addEdge(3, 4, 2);
+        for (int i = 0; i < size; i++) {
+            names[i] = sc.next();
+        }
+
+        int edgeCount = sc.nextInt();
+        for (int i = 0; i < edgeCount; i++) {
+            int u = sc.nextInt();
+            int v = sc.nextInt();
+            int weight = sc.nextInt();
+            addEdge(u, v, weight);
+        }
+
+        int start = sc.nextInt();
+        int dest = sc.nextInt();
 
         System.out.println("BFS order from A:");
         printPath(bfs(0));
@@ -133,6 +141,6 @@ public class Main {
         printPath(dfsOrder);
 
         System.out.println();
-        dijkstraAlg(0, 4);
+        dijkstraAlg(start, dest);
     }
 }
